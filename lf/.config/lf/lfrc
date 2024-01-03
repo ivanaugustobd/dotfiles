@@ -1,0 +1,23 @@
+set icons
+set hidden true
+set info size:time
+
+# key "aliases
+map <enter> :open
+map <esc> :quit
+
+# enable autojump
+cmd j %lf -remote "send $id cd '$(autojump $1 | sed 's/\\/\\\\/g;s/"/\\"/g')'"
+map j push :j
+
+# enable trash-cli
+cmd trash %trash-put $fx
+map <delete> %trash-put $fx
+map <s-delete> $clear && trash-restore || :
+
+# enable fuzzy finder through Ctrl+P
+map <c-t> $vim $(fd --type f --strip-cwd-prefix | fzf)
+
+# open with VS Code
+map . $[[ -d "$fx" || $(file -Lb --mime-type "$fx" | cut -d'/' -f1) = 'text' ]] && code "$fx" || ghex "$fx"
+
