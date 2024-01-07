@@ -1,5 +1,6 @@
 # Vars
 export STEAM_COMPAT_DATA_PATH=~/.var/app/com.valvesoftware.Steam/data/Steam/steamapps/compatdata/
+export STEAM_GAME_ID_CASTLEVANIA_ADVANCED_COLLECTION="1552550"
 export STEAM_GAME_ID_SHIN_MEGAMI_TENSEI_III="1413480"
 export STEAM_GAME_ID_TALES_OF_BERSERIA="429660"
 
