@@ -1,5 +1,7 @@
 [Added Associations]
+application/json=notepadqq.desktop;firefox.desktop;vim.desktop;libreoffice-writer.desktop;code.desktop;
 text/plain=notepadqq.desktop;vim.desktop;
 
 [Default Applications]
+application/json=notepadqq.desktop;
 text/plain=notepadqq.desktop;
