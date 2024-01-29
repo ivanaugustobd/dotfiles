@@ -14,9 +14,9 @@ gdk-pixbuf2
 glib2
 glibc
 gtk3
+i3-wm
 i3blocks
 i3lock
-i3-wm
 kde-cli-tools
 konsole
 kvantum
