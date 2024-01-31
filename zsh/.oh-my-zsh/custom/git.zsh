@@ -4,10 +4,13 @@ export GIT_LAST_BRANCH="@{-1}"
 # Aliases
 alias g-amend-all='git add . && git commit --amend --no-edit'
 alias g-amend='git commit --amend --no-edit'
-alias g-bkp-branch='git checkout -b "bkp/$(git current-branch)"'
+alias g-bkp-branch='git checkout -b "bkp/$(g-current-branch)"'
 alias g-current-branch='git branch --show-current'
 alias g-fetch-all='git fetch --all --auto-gc --prune --tags --show-forced-updates --prune-tags --progress'
 alias g-init='git init && git add . && git commit -m "Initial commit"'
+alias g-modified-files='g status --porcelain | grep "^ M"'
+alias g-deleted-files='g status --porcelain | grep "^ D"'
+alias g-new-files='g status --porcelain | grep "^??"'
 alias g-safe-pull="git add . && git stash && git pull --rebase && git stash pop && git reset"
 alias g-stash="git add . && git stash"
 alias g-woke-bs='git branch -m master main'
@@ -25,6 +28,14 @@ g-clone-subdir() {
   mv $2 ../
   cd ..
   rm -rf .repo-partial
+}
+
+g-blob-ids() {
+  [ -z "$1" ] && echo "Usage: g-blob-ids <file(s)>" && return 1
+
+  for FILE in "$@"; do
+    git log --format=%H -- "$FILE" | xargs -IcommitId git rev-parse commitId:"$FILE"
+  done
 }
 
 # Rewrite existent tag

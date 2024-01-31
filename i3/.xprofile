@@ -1,7 +1,9 @@
 export GDK_SCALE=2
-export GTK_THEME=Adwaita:dark
+export GTK_ICON_THEME=Dracula
+export GTK_THEME=Dracula
 export GTK_USE_PORTAL=1
-export GTK2_RC_FILES=/usr/share/themes/Adwaita-dark/gtk-2.0/gtkrc
+export GTK2_RC_FILES=/usr/share/themes/Dracula/gtk-2.0/gtkrc
 export MANGOHUD_CONFIG=cpu_power=1,font_scale=2,fsr=1,gamemode=1,gpu_power=1,hdr=1,ram=1,refresh_rate=1,resolution=1,vram=1
+export POLYBAR_XWINDOW_EMPTY="$USER@$HOST"
 export QT_QPA_PLATFORMTHEME=qt5ct
 #export QT_SCALE_FACTOR=2

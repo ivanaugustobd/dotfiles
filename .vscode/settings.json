@@ -1,4 +1,4 @@
 {
     "editor.fontFamily": "FiraCode Nerd Font,monospace",
-    "window.title": "󰨞 ${appName} ${separator} Ricing my ${rootName} ${separator} ${activeEditorShort}",
+    "window.title": "${appName} ${separator} Ricing my ${rootName} ${separator} ${activeEditorShort}",
 }
