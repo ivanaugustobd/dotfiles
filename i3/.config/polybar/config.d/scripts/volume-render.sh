@@ -7,6 +7,10 @@ case "$NODE_TYPE" in
   output) DEVICE_PATTERN=sink ;;
 esac
 
+# shellcheck source=/home/codeslicer/.cache/wal/colors.sh
+[ -e ~/.cache/wal/colors.sh ] && source ~/.cache/wal/colors.sh
+ICON_COLOR="${color1:-#bd93f9}"
+
 is_muted() {
   pulseaudio-control \
     --node-type "$NODE_TYPE" \
@@ -16,17 +20,17 @@ is_muted() {
 
 render() {
   local FORMAT
-  is_muted && FORMAT='%{F#bd93f9}$NODE_NICKNAME%{F-} %{F#707880}${VOL_LEVEL}%%{F-}' ||
-    FORMAT='%{F#bd93f9}$NODE_NICKNAME%{F-} ${VOL_LEVEL}%'
+  is_muted && FORMAT="%{F$ICON_COLOR}\$NODE_NICKNAME%{F-} %{F#707880}\${VOL_LEVEL}%%{F-}" ||
+    FORMAT="%{F$ICON_COLOR}\$NODE_NICKNAME%{F-} \${VOL_LEVEL}%"
 
   pulseaudio-control \
     --node-type "$NODE_TYPE" \
     --format "$FORMAT" \
     --node-nickname "alsa_input.usb-C-Media_Electronics_Inc._USB_PnP_Sound_Device-00.analog-mono: " \
     --node-nickname "alsa_input.usb-046d_HD_Pro_Webcam_C920_9BC59F2F-02.analog-stereo: 󰖠" \
-    --node-nickname "alsa_output.pci-0000_09_00.4.analog-stereo: 󰓃" \
-    --node-nickname "alsa_output.pci-0000_07_00.1.hdmi-stereo: 󰽟" \
-    --node-nickname "bluez_output.68_59_32_81_1D_55.1: 󰋋" \
+    --node-nickname "alsa_output.*.analog-stereo: 󰓃" \
+    --node-nickname "alsa_output.*.hdmi-stereo*: 󰽟" \
+    --node-nickname "bluez_output.*: 󰋋" \
     output
 }
 
