@@ -173,3 +173,4 @@ bindsym $mod+r mode "resize"
 #}
 
 include ~/.config/i3/config.d/*.conf
+include ~/.config/i3/config.d/*/*.conf
