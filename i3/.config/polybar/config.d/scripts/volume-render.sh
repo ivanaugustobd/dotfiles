@@ -10,6 +10,7 @@ esac
 # shellcheck source=/home/codeslicer/.cache/wal/colors.sh
 [ -e ~/.cache/wal/colors.sh ] && source ~/.cache/wal/colors.sh
 ICON_COLOR="${color1:-#bd93f9}"
+TEXT_COLOR="${color7:-#ffffff}"
 
 is_muted() {
   pulseaudio-control \
@@ -21,7 +22,7 @@ is_muted() {
 render() {
   local FORMAT
   is_muted && FORMAT="%{F$ICON_COLOR}\$NODE_NICKNAME%{F-} %{F#707880}\${VOL_LEVEL}%%{F-}" ||
-    FORMAT="%{F$ICON_COLOR}\$NODE_NICKNAME%{F-} \${VOL_LEVEL}%"
+    FORMAT="%{F$ICON_COLOR}\$NODE_NICKNAME%{F-} %{F$TEXT_COLOR}\${VOL_LEVEL}%%{F-}"
 
   pulseaudio-control \
     --node-type "$NODE_TYPE" \
