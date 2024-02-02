@@ -36,14 +36,14 @@ i3lock \
   --date-color=$blue \
   --time-color=$blue \
   --screen 1 \
-  --blur 1 \
+  --blur 10 \
   --clock \
   --indicator \
   --time-str="%H:%M" \
   --date-str="%a, %x" \
   --verif-text="Checking..." \
-  --wrong-text="Wrong pswd" \
-  --noinput="No Input" \
+  --wrong-text="Nope" \
+  --noinput="Clear" \
   --lock-text="Locking..." \
   --lockfailed="Lock Failed" \
   --radius=120 \
