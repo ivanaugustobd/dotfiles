@@ -27,8 +27,8 @@ render() {
   pulseaudio-control \
     --node-type "$NODE_TYPE" \
     --format "$FORMAT" \
-    --node-nickname "alsa_input.usb-C-Media_Electronics_Inc._USB_PnP_Sound_Device-00.analog-mono: " \
-    --node-nickname "alsa_input.usb-046d_HD_Pro_Webcam_C920_9BC59F2F-02.analog-stereo: 󰖠" \
+    --node-nickname "alsa_input.*._USB_PnP_Sound_Device*.analog-mono: " \
+    --node-nickname "alsa_input.*Webcam*.analog-stereo: 󰖠" \
     --node-nickname "alsa_output.*.analog-stereo: 󰓃" \
     --node-nickname "alsa_output.*.hdmi-stereo*: 󰽟" \
     --node-nickname "bluez_output.*: 󰋋" \
