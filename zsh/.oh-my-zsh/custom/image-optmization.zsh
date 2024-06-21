@@ -1,4 +1,15 @@
-# Aliases
-alias optimize-jpg="parallel -j 16 jpegoptim -st ::: *.jp*g"
-alias optimize-png="parallel -j 16 optipng -strip all ::: *.png"
-alias optimize-svg="parallel -j 16 svgo ::: *.svg"
+# Functions
+function optimize-jpg() {
+  find -iname '*.jp*g' -print0 |
+    parallel -0 jpegoptim -st {}
+}
+
+function optimize-png() {
+  find -iname '*.png' -print0 |
+    parallel -0 optipng -strip all {}
+}
+
+function optimize-svg() {
+  find -iname '*.svg' -print0 |
+    parallel -0 svgo {}
+}

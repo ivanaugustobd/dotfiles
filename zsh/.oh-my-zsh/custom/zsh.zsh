@@ -5,6 +5,9 @@ setopt nonomatch # I forgot what this does but I remember I'm used to it already
 alias z-config="vim ~/.zshrc"
 alias z-history="vim ~/.zsh_history +:$"
 
+# Path
+export PATH=$PATH:vendor/bin:~/.yarn/bin
+
 # Load Pywal Theme
 PYWAL_APPLY_COLORS_FILE=~/.cache/wal/sequences
 ([ -e $PYWAL_APPLY_COLORS_FILE ] && cat $PYWAL_APPLY_COLORS_FILE &)

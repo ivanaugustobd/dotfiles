@@ -1,60 +1,40 @@
 # Functions
 ico-to-png() {
-  for FILE in *.ico; do
-    convert $FILE ${FILE%.*}.png
-  done
-  optimize-png
+  find -iname '*.ico' -print0 |
+    parallel -0 magick {} {.}.png
 }
 
 jpg-to-webp() {
-  optimize-jpg
-  for FILE in *.jp*g; do
-    convert $FILE ${FILE%.*}.webp
-  done
+  find -iname '*.jp*g' -print0 |
+    parallel -0 magick {} {.}.webp
 }
 
 png-to-jpg() {
-  optimize-png
-  for FILE in *.png; do
-    convert $FILE -background white -flatten -alpha off ${FILE%.*}.jpg
-  done
-  optimize-jpg
+  find -iname '*.png' -print0 |
+    parallel -0 magick -background white -flatten -alpha off {} {.}.jpg
 }
 
 png-to-webp() {
-  optimize-png
-  for FILE in *.png; do
-    convert $FILE ${FILE%.*}.webp
-  done
+  find -iname '*.png' -print0 |
+    parallel -0 magick {} {.}.webp
 }
 
 svg-to-ico() {
-  optimize-svg
-  for FILE in *.svg; do
-    inkscape -o ${FILE%.*}.png $FILE
-    convert ${FILE%.*}.{png,ico}
-    rm ${FILE%.*}.png
-  done
+  find -iname '*.svg' -print0 |
+    parallel -0 inkscape {} -o {.}.png \; magick {.}.png {.}.ico \; rm {.}.png
 }
 
 svg-to-png() {
-  optimize-svg
-  for FILE in *.svg; do
-    inkscape $FILE --export-filename ${FILE%.*}.png
-  done
-  optimize-png
+  find -iname '*.svg' -print0 |
+    parallel -0 inkscape {} --export-filename {.}.png
 }
 
 webp-to-jpg() {
-  for FILE in *.webp; do
-    convert $FILE ${FILE%.*}.jpg
-  done
-  optimize-jpg
+  find -iname '*.webp' -print0 |
+    parallel -0 magick {} {.}.jpg
 }
 
 webp-to-png() {
-  for FILE in *.webp; do
-    convert $FILE ${FILE%.*}.png
-  done
-  optimize-png
+  find -iname '*.webp' -print0 |
+    parallel -0 magick {} {.}.png
 }
