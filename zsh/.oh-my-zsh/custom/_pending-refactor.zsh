@@ -13,8 +13,6 @@ alias pcloud-restore-conflicted="find ./ -not -iname '* (conflicted)' -exec tras
 alias pestle="if [ ! -e ./pestle ]; then pestle-install; fi; ./pestle"
 alias php-server="php -S 127.0.0.1:8000 -d display_errors=1"
 alias rm="trash-put"
-alias s-config="vi ~/.ssh/config"
-alias s-key-copy="cat ~/.ssh/id_rsa.pub | pbcopy"
 alias vi="vim"
 alias watch-cpu-governor="watch cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
 alias watch-gpu="nvidia-processes"
@@ -25,7 +23,7 @@ lolban() {
 }
 
 vscode() {
-  code ~/Projects/$1
+  code --ozone-platform-hint=x11 ~/Projects/$1
 }
 
 m2-frontools-setup() {
