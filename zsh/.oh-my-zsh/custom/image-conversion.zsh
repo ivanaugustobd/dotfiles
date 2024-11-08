@@ -10,8 +10,7 @@ jpg-to-webp() {
 }
 
 png-to-jpg() {
-  find -iname '*.png' -print0 |
-    parallel -0 magick -background white -flatten -alpha off {} {.}.jpg
+  parallel magick {} {.}.jpg ::: *.png
 }
 
 png-to-webp() {
