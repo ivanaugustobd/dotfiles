@@ -15,7 +15,7 @@ p-list-installed() {
 }
 
 p-list-updates() {
-  p-update &> /dev/null
+  paru -Sy
   pacman -Qu
 }
 
