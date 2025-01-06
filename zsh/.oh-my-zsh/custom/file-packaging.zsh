@@ -1,3 +1,5 @@
-extract-7z() {
-  parallel 7z x -o{.} {} ::: *.7z
-}
+alias extract-7z="parallel 7z x -o{.} {} ::: *.7z"
+alias extract-gz="parallel gunzip -vk {} ::: *.gz"
+alias extract-rar="parallel unrar x {} {.} ::: *.rar"
+alias extract-tar-gz="parallel tar -xvf {} ::: *.tar.gz"
+alias extract-zip="parallel unzip {} -d {.} ::: *.zip"
