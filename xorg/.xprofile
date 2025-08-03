@@ -1,7 +1,0 @@
-export GTK2_RC_FILES=/usr/share/themes/Dracula/gtk-2.0/gtkrc
-export GTK_ICON_THEME=Dracula
-export GTK_THEME=Dracula
-export MANGOHUD_CONFIG=cpu_power=1,font_scale=2,fsr=1,gamemode=1,gpu_power=1,hdr=1,ram=1,refresh_rate=1,resolution=1,vram=1
-export POLYBAR_XWINDOW_EMPTY="$USER@$HOST"
-export QT_QPA_PLATFORMTHEME=qt5ct
-#export VK_ICD_FILENAMES=/usr/share/vulkan/icd.d/radeon_icd.x86_64.json
