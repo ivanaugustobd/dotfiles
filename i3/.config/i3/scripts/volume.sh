@@ -15,7 +15,7 @@ function is_mute {
   wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -i muted > /dev/null
 }
 
-function send_notification {
+function show_current_volume {
   DIR=$(dirname "$0")
   volume=$(get_volume)
   # Make the bar with the special character ─ (it's not dash -)
@@ -52,22 +52,22 @@ case $1 in
     else
       pactl set-sink-volume @DEFAULT_SINK@ 100% > /dev/null
     fi
-    send_notification
+    show_current_volume
     ;;
   down)
     #amixer -D pulse set Master on > /dev/null
     #amixer -D pulse sset Master 5%- > /dev/null
     pactl set-sink-volume @DEFAULT_SINK@ -5% > /dev/null
-    send_notification
+    show_current_volume
     ;;
   mute)
     # Toggle mute
-    wpctl set-mute @DEFAULT_SINK@ toggle
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
     if is_mute; then
       DIR=$(dirname "$0")
       dunstify -i "audio-volume-muted-symbolic" -r 900 -t 2000 Mute
     else
-      send_notification
+      show_current_volume
     fi
     ;;
 esac

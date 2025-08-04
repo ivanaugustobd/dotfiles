@@ -13,6 +13,7 @@ alias g-deleted-files='g status --porcelain | grep "^ D"'
 alias g-new-files='g status --porcelain | grep "^??"'
 alias g-safe-pull="git add . && git stash && git pull --rebase && git stash pop && git reset"
 alias g-stash="git add . && git stash"
+alias g-user-setup='git config user.email 4603111+ivanaugustobd@users.noreply.github.com && git config user.name "Code Slicer"'
 alias g-woke-bs='git branch -m master main'
 
 # Short aliases
