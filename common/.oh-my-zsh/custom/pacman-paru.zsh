@@ -20,6 +20,7 @@ p-list-updates() {
 }
 
 p-rank-mirrors() {
+  ! which rankmirrors && sudo pacman -S --noconfirm pacman-contrib
   curl -s 'https://archlinux.org/mirrorlist/?country=BR&protocol=http&protocol=https&ip_version=4&use_mirror_status=on' | sed -e 's/^#Server/Server/' -e '/^#/d' | rankmirrors -n 5 - | sudo tee /etc/pacman.d/mirrorlist
 }
 
