@@ -7,8 +7,8 @@ alias external-ip='echo $(curl -s ifconfig.me)'
 alias ip-external="external-ip"
 alias lc='colorls -A --sd'
 alias nvidia-processes="watch nvidia-smi"
-alias pbcopy="wl-copy"
-# alias pbcopy="xclip -sel clip"
+# alias pbcopy="wl-copy" # Wayland
+alias pbcopy="xclip -sel clip" # Xorg
 alias pcloud-restore-conflicted="find ./ -not -iname '* (conflicted)' -exec trash-put {} \; && rename ' (conflicted)' "" *"
 alias pestle="if [ ! -e ./pestle ]; then pestle-install; fi; ./pestle"
 alias php-server="php -S 127.0.0.1:8000 -d display_errors=1"
@@ -17,13 +17,18 @@ alias vi="vim"
 alias watch-cpu-governor="watch cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
 alias watch-gpu="nvidia-processes"
 alias we="warden env"
+alias we-init='warden env-init "$(basename "$PWD")" magento2'
+
+w-sign-certificate() {
+  warden sign-certificate "$(bash -c 'source .env; echo $TRAEFIK_DOMAIN')"
+}
 
 lolban() {
   toilet -f pagga "$*" | lolcat
 }
 
 vscode() {
-  code --ozone-platform-hint=x11 ~/Projects/$1
+  code ~/Projects/$1
 }
 
 m2-frontools-setup() {
