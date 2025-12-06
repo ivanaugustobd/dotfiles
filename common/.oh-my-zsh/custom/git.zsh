@@ -1,6 +1,9 @@
 # Vars
 export GIT_LAST_BRANCH="@{-1}"
 
+# Vars
+master=main
+
 # Aliases
 alias g-amend-all='git add . && git commit --amend --no-edit'
 alias g-amend='git commit --amend --no-edit'
