@@ -13,11 +13,13 @@ alias pcloud-restore-conflicted="find ./ -not -iname '* (conflicted)' -exec tras
 alias pestle="if [ ! -e ./pestle ]; then pestle-install; fi; ./pestle"
 alias php-server="php -S 127.0.0.1:8000 -d display_errors=1"
 alias rm="trash-put"
-alias vi="vim"
+alias timestamp="date +%s"
 alias watch-cpu-governor="watch cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor"
 alias watch-gpu="nvidia-processes"
 alias we="warden env"
 alias we-init='warden env-init "$(basename "$PWD")" magento2'
+
+compdef rm=trash-put
 
 w-sign-certificate() {
   warden sign-certificate "$(bash -c 'source .env; echo $TRAEFIK_DOMAIN')"

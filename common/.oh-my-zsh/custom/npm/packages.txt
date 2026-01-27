@@ -1,0 +1,5 @@
+stylelint@^17
+stylelint-config-standard-less@^4
+stylelint-config-standard-scss@^17
+stylelint-config-standard@^40
+stylelint-order@^7
