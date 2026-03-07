@@ -62,5 +62,5 @@ i3lock \
   --date-str="%a, %d %b" \
   --time-str="%H:%M" \
   --noinput-text="" \
-  --wrong-text="Wrong!" \
+  --wrong-text="Get Out!" \
   --verif-text="Verifying..."
