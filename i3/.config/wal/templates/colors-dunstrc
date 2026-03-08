@@ -1,9 +1,11 @@
+# remember to link this file using 
+# ln -sv ~/.cache/wal/colors-dunstrc ~/.config/dunst/dunstrc
+
 [global]
     corner_radius = 8
-    font = Monospace 9
+    font = 'Hack Nerd Font Mono' 9
     format = "<b>%s</b>\n%b"
-    frame_width = 2
-    gap_size = 6
+    frame_width = 1
     icon_corner_radius = 6
     offset = (10, 42)
     origin = bottom-right
@@ -14,16 +16,19 @@
     background = "{background}e6"
     foreground = "{foreground}"
     frame_color = "{color8}cc"
+    highlight = "{color2}"
     timeout = 7
 
 [urgency_normal]
     background = "{background}e6"
     foreground = "{foreground}"
     frame_color = "{color4}cc"
+    highlight = "{color6}"
     timeout = 5
 
 [urgency_critical]
     background = "{color9}e6"
     foreground = "{foreground}"
     frame_color = "{color9}ff"
+    highlight = "{color9}"
     timeout = 0
