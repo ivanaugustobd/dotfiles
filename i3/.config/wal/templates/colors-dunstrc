@@ -1,0 +1,32 @@
+[global]
+    ### ... keep most original values ...
+
+    transparency = 10          # fallback if not using #rrggbbaa method
+    frame_width = 2            # 1–3 looks good with pywal
+    corner_radius = 8          # modern look (0 = square)
+    gap_size = 6               # space between notifications (needs compositor)
+
+    font = Monospace 9         # or JetBrains Mono, Iosevka, etc.
+    format = "<b>%s</b>\n%b"
+
+    # you can keep or change these too
+    icon_corner_radius = 6
+    progress_bar_corner_radius = 4
+
+[urgency_low]
+    background = "{background}e6"      # ≈ 90% opacity
+    foreground = "{foreground}"
+    frame_color = "{color8}cc"         # ≈ 80% opacity frame
+    timeout = 7
+
+[urgency_normal]
+    background = "{background}e6"
+    foreground = "{foreground}"
+    frame_color = "{color4}cc"
+    timeout = 5
+
+[urgency_critical]
+    background = "{color9}e6"          # bright red background, still semi-transparent
+    foreground = "{foreground}"
+    frame_color = "{color9}ff"         # fully opaque critical frame
+    timeout = 0
