@@ -1,4 +1,4 @@
 {
-    "editor.fontFamily": "FiraCode Nerd Font,monospace",
+    "editor.fontFamily": "FiraCode Nerd Font Mono,monospace", // make sure to have ttf-firacode-nerd installed
     "window.title": "${appName} ${separator} Ricing my ${rootName} ${separator} ${activeEditorShort}",
 }
