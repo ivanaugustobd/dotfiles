@@ -8,7 +8,7 @@
     frame_width = 1
     gap_size = 10
     icon_corner_radius = 6
-    offset = (15, 50)
+    offset = (15, 48)
     origin = bottom-right
     progress_bar_corner_radius = 5
 
