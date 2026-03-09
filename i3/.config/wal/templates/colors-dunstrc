@@ -2,33 +2,33 @@
 # ln -sv ~/.cache/wal/colors-dunstrc ~/.config/dunst/dunstrc
 
 [global]
-    corner_radius = 8
+    corner_radius = 15
     font = 'Hack Nerd Font Mono' 9
     format = "<b>%s</b>\n%b"
     frame_width = 1
+    gap_size = 10
     icon_corner_radius = 6
     offset = (10, 42)
     origin = bottom-right
-    progress_bar_corner_radius = 4
-    transparency = 10
+    progress_bar_corner_radius = 5
 
 [urgency_low]
-    background = "{background}e6"
+    background = "{background}bf"
     foreground = "{foreground}"
-    frame_color = "{color8}cc"
-    highlight = "{color2}"
-    timeout = 7
+    frame_color = "{color7}"
+    highlight = "{color7}"
+    timeout = 3
 
 [urgency_normal]
-    background = "{background}e6"
+    background = "{background}bf"
     foreground = "{foreground}"
-    frame_color = "{color4}cc"
-    highlight = "{color6}"
-    timeout = 5
+    frame_color = "{color1}"
+    highlight = "{color1}"
+    timeout = 10
 
 [urgency_critical]
-    background = "{color9}e6"
+    background = "{color6}"
     foreground = "{foreground}"
-    frame_color = "{color9}ff"
-    highlight = "{color9}"
+    frame_color = "{color6}"
+    highlight = "{color6}"
     timeout = 0
