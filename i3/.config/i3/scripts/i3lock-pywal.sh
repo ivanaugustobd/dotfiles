@@ -6,7 +6,7 @@ if [ ! -f ~/.cache/wal/colors ]; then
     exit 1
 fi
 
-colors=($(cat ~/.cache/wal/colors))
+mapfile -t colors < ~/.cache/wal/colors
 #echo "Debug: Loaded colors (first 5 + last): ${colors[0]} ${colors[1]} ${colors[4]} ${colors[8]} ${colors[15]}"
 
 # Use common pywal assignments (adjust indices if your scheme looks off)
