@@ -49,7 +49,7 @@ This group contains configurations for cross-desktop utilities:
 4. Configuration is automatically available on the system via symlinks
 
 ### Pywal Integration
-Certain configuration files are pywal templates that receive dynamic colors based on your wallpaper. These templates are stored in `i3/.config/wal/templates/` and are prefixed with `colors-` (e.g., `colors-dunst.conf`, `colors-rofi.conf`). Use `wal -i <wallpaper>` to set a wallpaper and regenerate color schemes across all components.
+Certain configuration files are pywal templates that receive dynamic colors based on your wallpaper. These templates are stored in `i3/.config/wal/templates/` and are prefixed with `colors-` (e.g., `colors-dunst.conf`, `colors-rofi.conf`, `colors-flameshot.conf`). Use `wal -i <wallpaper>` to set a wallpaper and regenerate color schemes across all components.
 
 ## References
 - See `README.md` for a visual overview.
