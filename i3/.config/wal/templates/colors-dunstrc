@@ -8,19 +8,19 @@
     frame_width = 1
     gap_size = 10
     icon_corner_radius = 6
-    offset = (10, 42)
+    offset = (15, 50)
     origin = bottom-right
     progress_bar_corner_radius = 5
 
 [urgency_low]
-    background = "{background}bf"
+    background = "{background}d8"
     foreground = "{foreground}"
     frame_color = "{color7}"
     highlight = "{color7}"
-    timeout = 3
+    timeout = 5
 
 [urgency_normal]
-    background = "{background}bf"
+    background = "{background}d8"
     foreground = "{foreground}"
     frame_color = "{color1}"
     highlight = "{color1}"
