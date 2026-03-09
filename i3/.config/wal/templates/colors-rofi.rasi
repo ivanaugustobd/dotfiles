@@ -87,7 +87,7 @@ element {
 }
 
 element-text, element-icon {
-    size: 2.4em;
+    size: 1.2em;
     vertical-align: 0.5;
     line-alignment: 0.5;
 }
