@@ -5,18 +5,22 @@
 # $./volume.sh down
 # $./volume.sh mute
 
+for required_cmd in wpctl dunstify; do
+  if ! command -v "$required_cmd" >/dev/null 2>&1; then
+    echo "Error: required command '$required_cmd' not found" >&2
+    exit 127
+  fi
+done
+
 function get_volume {
-  #amixer -D pulse get Master | grep '%' | head -n 1 | cut -d '[' -f 2 | cut -d '%' -f 1
-  echo "scale=0; $(wpctl get-volume @DEFAULT_AUDIO_SINK@ | cut -d' ' -f2) * 100 / 1" | bc
+  wpctl get-volume @DEFAULT_AUDIO_SINK@ | awk '{ printf "%d\n", $2 * 100 }'
 }
 
 function is_mute {
-  #amixer -D pulse get Master | grep '%' | grep -oE '[^ ]+$' | grep off > /dev/null
-  wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -i muted > /dev/null
+  wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q '\[MUTED\]'
 }
 
 function show_current_volume {
-  DIR=$(dirname "$0")
   volume=$(get_volume)
   # Make the bar with the special character ─ (it's not dash -)
   # https://en.wikipedia.org/wiki/Box-drawing_character
@@ -43,31 +47,24 @@ function show_current_volume {
 
 case $1 in
   up)
-    # Set the volume on (if it was muted)
-    # amixer -D pulse set Master on > /dev/null
-    # Up the volume (+ 5%)
-    # amixer -D pulse sset Master 5%+ > /dev/null
-    if [ "$(get_volume)" -lt "100" ]; then
-      pactl set-sink-volume @DEFAULT_SINK@ +5% > /dev/null
-    else
-      pactl set-sink-volume @DEFAULT_SINK@ 100% > /dev/null
-    fi
+    wpctl set-volume -l 1.0 @DEFAULT_AUDIO_SINK@ 5%+ > /dev/null
     show_current_volume
     ;;
   down)
-    #amixer -D pulse set Master on > /dev/null
-    #amixer -D pulse sset Master 5%- > /dev/null
-    pactl set-sink-volume @DEFAULT_SINK@ -5% > /dev/null
+    wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- > /dev/null
     show_current_volume
     ;;
   mute)
     # Toggle mute
-    pactl set-sink-mute @DEFAULT_SINK@ toggle
+    wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle
     if is_mute; then
-      DIR=$(dirname "$0")
       dunstify -i "audio-volume-muted-symbolic" -r 900 -t 2000 Mute
     else
       show_current_volume
     fi
+    ;;
+  *)
+    echo "Usage: $0 {up|down|mute}" >&2
+    exit 2
     ;;
 esac
