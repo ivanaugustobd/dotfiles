@@ -1,13 +1,12 @@
 # ssh
-alias s-config="vi ~/.ssh/config"
-alias s-key-copy="cat ~/.ssh/id_rsa.pub | pbcopy"
+alias s-key-copy="cat ~/.ssh/id_rsa.pub | xclip -sel clip"
 
 s() {
   if t status | grep stopped 1> /dev/null; then
     t up
   fi
 
-  ssh $@
+  ssh "$@"
 
   if ! ps aux | grep '[s]sh ' 1> /dev/null; then
     t down
@@ -17,7 +16,9 @@ s() {
 compdef s=ssh
 
 s-forward-setup() {
+  local SSH_KEY="${1:-~/.ssh/id_rsa}"
+
   eval "$(ssh-agent -s)"
-  ssh-add ~/.ssh/id_rsa
+  ssh-add "$SSH_KEY"
   ssh-add -L
 }

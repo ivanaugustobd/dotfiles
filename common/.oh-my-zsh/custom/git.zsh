@@ -1,8 +1,7 @@
 # Vars
 export GIT_LAST_BRANCH="@{-1}"
-
-# Vars
-master=main
+export GIT_DEFAULT_BRANCH=master
+export master=main
 
 # Aliases
 alias g-amend-all='git add . && git commit --amend --no-edit'
@@ -17,7 +16,7 @@ alias g-new-files='g status --porcelain | grep "^??"'
 alias g-safe-pull="git add . && git stash && git pull --rebase && git stash pop && git reset"
 alias g-stash="git add . && git stash"
 alias g-user-setup='git config user.email 4603111+ivanaugustobd@users.noreply.github.com && git config user.name "Code Slicer"'
-alias g-woke-bs='git branch -m master main'
+alias g-woke-bs="git branch -m master main"
 
 # Short aliases
 alias gl="git log --oneline --graph --"
@@ -26,37 +25,80 @@ alias gs="git status"
 # Functions
 ## Clone only the specified subfolder of a remote repository
 g-clone-subdir() {
-  git clone --depth 1 --filter=blob:none --sparse $1 .repo-partial
-  cd $_
-  git sparse-checkout set $2
-  mv $2 ../
+  local REPO_URL="$1"
+  local SUBDIR="$2"
+
+  if [[ -z "$REPO_URL" || -z "$SUBDIR" ]]; then
+    echo "Usage: g-clone-subdir <repo-url> <subdirectory>"
+    return 1
+  fi
+
+  if ! command -v git &>/dev/null; then
+    echo "Error: git not found"
+    return 1
+  fi
+
+  local TARGET_DIR=".repo-partial"
+  git clone --depth 1 --filter=blob:none --sparse "$REPO_URL" "$TARGET_DIR" || return 1
+  cd "$TARGET_DIR" || return 1
+  git sparse-checkout set "$SUBDIR"
+  mv "$SUBDIR" ../
   cd ..
-  rm -rf .repo-partial
+  rm -rf "$TARGET_DIR"
 }
 
 g-blob-ids() {
-  [ -z "$1" ] && echo "Usage: g-blob-ids <file(s)>" && return 1
+  if [[ -z "$1" ]]; then
+    echo "Usage: g-blob-ids <file(s)>"
+    return 1
+  fi
+
+  if ! git rev-parse --git-dir &>/dev/null; then
+    echo "Error: Not in a git repository"
+    return 1
+  fi
 
   for FILE in "$@"; do
-    git log --format=%H -- "$FILE" | xargs -IcommitId git rev-parse commitId:"$FILE"
+    git log --format=%H -- "$FILE" | xargs -IcommitId git rev-parse "commitId:$FILE"
   done
 }
 
-# Rewrite existent tag
 g-rewrite-tag() {
-  git tag --delete $1
+  local TAG_NAME="$1"
+
+  if [[ -z "$TAG_NAME" ]]; then
+    echo "Usage: g-rewrite-tag <tag-name>"
+    return 1
+  fi
+
+  if ! git rev-parse --git-dir &>/dev/null; then
+    echo "Error: Not in a git repository"
+    return 1
+  fi
+
+  git tag --delete "$TAG_NAME"
   git add .
   git commit --amend --no-edit
-  git tag $1
+  git tag "$TAG_NAME"
 }
 
-# Quick commit with current datetime as message
 g-version-commit() {
+  if ! git rev-parse --git-dir &>/dev/null; then
+    echo "Error: Not in a git repository"
+    return 1
+  fi
+
   git add .
   git commit -m "v$(date '+%Y%m%d%_H%M%S')"
 }
 
-# Get the branch where given commit originated from
 g-which-branch-commit-is-from() {
-  git reflog show --all | grep $1 | grep -v HEAD | awk '{print $2}' | awk -F'@' '{print $1}' | awk -F'refs/heads/|refs/remotes/' '{print $2}' | sort | uniq
+  local COMMIT="$1"
+
+  if [[ -z "$COMMIT" ]]; then
+    echo "Usage: g-which-branch-commit-is-from <commit>"
+    return 1
+  fi
+
+  git reflog show --all | grep "$COMMIT" | grep -v HEAD | awk '{print $2}' | awk -F'@' '{print $1}' | awk -F'refs/heads/|refs/remotes/' '{print $2}' | sort | uniq
 }

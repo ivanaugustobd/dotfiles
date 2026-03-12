@@ -1,9 +1,9 @@
 # Vars
 export ZSHRC="${ZDOTDIR:-$HOME}/.zshrc"
-export EDITOR=vim
+export EDITOR=nvim
 export ELECTRON_TRASH=gio
 export PHP_CS_FIXER_IGNORE_ENV=1
-export VISUAL=vim
+export VISUAL=nvim
 
 # Load extra info from an external env file
 _zsh-load-env-vars() {
