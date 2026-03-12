@@ -1,4 +1,5 @@
 # Vars
+export ZSHRC="${ZDOTDIR:-$HOME}/.zshrc"
 export EDITOR=vim
 export ELECTRON_TRASH=gio
 export PHP_CS_FIXER_IGNORE_ENV=1
