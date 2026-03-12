@@ -28,32 +28,3 @@ w-sign-certificate() {
 lolban() {
   toilet -f pagga "$*" | lolcat
 }
-
-vscode() {
-  code ~/Projects/$1
-}
-
-m2-frontools-setup() {
-  [ ! -d 'vendor/snowdog/frontools' ] && echo 'Frontools not found, skipping.' && return 0
-  m2-cli 'cd vendor/snowdog/frontools &&
-    (rm -rf node_modules || true) &&
-    yarn &&
-    yarn setup
-  '
-}
-
-m2-frontools-compile() {
-  [ ! -d 'vendor/snowdog/frontools' ] && echo 'Frontools not found, skipping.' && return 0
-  [ ! -d 'vendor/snowdog/frontools/node_modules' ] && m2-frontools-setup
-
-  m2-cli 'cd vendor/snowdog/frontools &&
-    yarn styles &&
-    yarn babel &&
-    yarn svg
-  '
-}
-
-m2-frontools-watch() {
-  [ ! -d 'vendor/snowdog/frontools' ] && echo 'Frontools not found, skipping.' && return 0
-  m2-cli 'cd vendor/snowdog/frontools && yarn watch'
-}
