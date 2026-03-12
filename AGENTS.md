@@ -51,6 +51,30 @@ This group contains configurations for cross-desktop utilities:
 ### Pywal Integration
 Certain configuration files are pywal templates that receive dynamic colors based on your wallpaper. These templates are stored in `i3/.config/wal/templates/` and are prefixed with `colors-` (e.g., `colors-dunst.conf`, `colors-rofi.conf`, `colors-flameshot.conf`). Use `wal -i <wallpaper>` to set a wallpaper and regenerate color schemes across all components.
 
+### Color Scheme
+The system color scheme is powered by **pywal16** (a fork of pywal that generates a full **16-color palette**, i.e., `color0`–`color15`). Colors are derived from the current wallpaper and written to cache files at `~/.cache/wal/`.
+
+#### Retrieving the Current Color Palette
+When you need to know the active colors (e.g., to style a new component or template), read the generated files directly:
+
+- **JSON (all formats)**: `~/.cache/wal/colors.json` — contains `colors`, `special` (background, foreground, cursor), and `wallpaper` keys.
+- **Shell variables**: `~/.cache/wal/colors.sh` — sourceable file exporting `$color0`–`$color15`, `$background`, `$foreground`, `$cursor`, and `$wallpaper`.
+- **CSS variables**: `~/.cache/wal/colors.css`
+- **Hex list**: `~/.cache/wal/colors` — one hex color per line (`color0`–`color15`).
+
+To quickly print the current palette in a terminal:
+```sh
+# via xrdb (reads from the X resource database, which pywal populates):
+xrdb -query | grep -iE '^\*\.color([0-9]|1[0-5]):'
+# or from the cache files directly:
+cat ~/.cache/wal/colors.json
+# or, for just the 16 hex values:
+cat ~/.cache/wal/colors
+```
+
+#### Creating New Pywal Templates
+To make a new config file receive pywal colors automatically, create a template in `i3/.config/wal/templates/` named `colors-<component>.conf` (or the appropriate extension). Use the `{color0}`–`{color15}`, `{background}`, `{foreground}`, and `{cursor}` placeholders. After running `wal -i <wallpaper>`, the rendered output is written to `~/.cache/wal/colors-<component>.conf` and can be sourced or included by the target application.
+
 ## References
 - See `README.md` for a visual overview.
 - Key configs: `i3/.config/i3/config`, `common/.vimrc`, `common/.shellcheckrc`
