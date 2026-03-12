@@ -2,13 +2,20 @@
 
 export PHPENV_ROOT="${PHPENV_ROOT:-$HOME/.phpenv}"
 
-phpenv() {
+php() {
+    # install phpenv if not already installed
     if [[ ! -d "$PHPENV_ROOT" ]]; then
-        echo "phpenv not found. Installing..."
-        phpenv-install || return 1
+        echo "phpenv not found. Installing phpenv..."
+        phpenv-install || { echo "Failed to install phpenv."; return 1; }
     fi
 
-    "$PHPENV_ROOT/bin/phpenv" "$@"
+    # load phpenv if not already loaded
+    if ! command -v phpenv >/dev/null 2>&1; then
+        _phpenv-load
+    fi
+
+    # pipe the og command through phpenv
+    phpenv exec php "$@"
 }
 
 phpenv-install() {
@@ -27,10 +34,6 @@ phpenv-install() {
 _phpenv-load() {
     export PATH="$PHPENV_ROOT/bin:$PATH"
     eval "$("$PHPENV_ROOT/bin/phpenv" init -)"
-
-    if ! grep -qF '_phpenv-load' "$ZSHRC"; then
-        echo '_phpenv-load' >> "$ZSHRC"
-    fi
 }
 
 phpenv-init() {
@@ -60,15 +63,10 @@ phpenv-init() {
         PHP_VERSION="$RESOLVED_VERSION"
     fi
 
-    phpenv install "$PHP_VERSION"
+    phpenv install -s "$PHP_VERSION"
     phpenv local "$PHP_VERSION"
-}
-
-phpenv-update() {
-    phpenv update
 }
 
 phpenv-uninstall() {
     trash-put "$PHPENV_ROOT"
-    sed -i '/_phpenv-load/d' "$ZSHRC"
 }

@@ -1,16 +1,17 @@
-# remember to link this file using 
+# remember to link this file using
 # ln -sv ~/.cache/wal/colors-dunstrc ~/.config/dunst/dunstrc
 
 [global]
-    corner_radius = 15
-    font = 'Hack Nerd Font Mono' 9
+    corner_radius = 10
+    font = 'Hack Nerd Font Mono' 10
     format = "<b>%s</b>\n%b"
     frame_width = 1
     gap_size = 10
-    icon_corner_radius = 6
+    icon_corner_radius = 5
     offset = (15, 48)
     origin = bottom-right
     progress_bar_corner_radius = 5
+    scale = 2
 
 [urgency_low]
     background = "{background}d8"
