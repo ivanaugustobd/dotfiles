@@ -18,7 +18,7 @@ This group manages the visual and functional aspects of the desktop:
 This group contains configurations for cross-desktop utilities:
 - **kitty**: Terminal emulator (default terminal for the system)
 - **oh-my-zsh**: Shell customizations, functions, and aliases
-- **vim**: Editor configuration and basic settings
+- **nvim**: Neovim editor configuration with lazy.nvim and catppuccin theme
 - **btop**: TUI process manager configuration
 - **flameshot**: Screenshot tool configuration
 - **shellcheck**: Global linting rules for shell scripts
@@ -77,7 +77,7 @@ To make a new config file receive pywal colors automatically, create a template 
 
 ## References
 - See `README.md` for a visual overview.
-- Key configs: `i3/.config/i3/config`, `common/.vimrc`, `common/.shellcheckrc`
+- Key configs: `i3/.config/i3/config`, `common/.config/nvim/init.lua`, `common/.shellcheckrc`
 - Scripts: `i3/.config/i3/scripts/`
 
 ---
