@@ -11,7 +11,7 @@ php() {
 
     # load phpenv if not already loaded
     if ! command -v phpenv >/dev/null 2>&1; then
-        _phpenv-load
+        phpenv-load
     fi
 
     # pipe the og command through phpenv
@@ -28,10 +28,10 @@ phpenv-install() {
     curl -L https://raw.githubusercontent.com/phpenv/phpenv-installer/master/bin/phpenv-installer | bash || return 1
 
     # setup shell
-    _phpenv-load
+    phpenv-load
 }
 
-_phpenv-load() {
+phpenv-load() {
     export PATH="$PHPENV_ROOT/bin:$PATH"
     eval "$("$PHPENV_ROOT/bin/phpenv" init -)"
 }

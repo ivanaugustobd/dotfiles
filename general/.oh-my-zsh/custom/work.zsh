@@ -33,7 +33,7 @@ _vscode() {
 compdef _vscode vscode
 
 # Frontools
-FRONTOOLS_DIR="vendor/snowdog/frontools"
+FRONTOOLS_DIR="tools"
 
 _m2-frontools-check() {
   if [[ ! -d "$FRONTOOLS_DIR" ]]; then

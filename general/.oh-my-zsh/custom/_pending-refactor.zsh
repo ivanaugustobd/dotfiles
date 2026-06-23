@@ -22,6 +22,7 @@ alias we-init='warden env-init "$(basename "$PWD")" magento2'
 compdef rm=trash-put
 
 w-sign-certificate() {
+  export WARDEN_DOCKER_SOCK=/var/run/docker.sock
   warden sign-certificate "$(bash -c 'source .env; echo $TRAEFIK_DOMAIN')"
 }
 
