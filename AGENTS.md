@@ -48,6 +48,11 @@ This group contains configurations for cross-desktop utilities:
 3. Commit changes to git with clear commit messages
 4. Configuration is automatically available on the system via symlinks
 
+### Shell Conventions
+- Treat `.zsh` files in this repo as zsh code, not bash. Use zsh-compatible syntax, semantics, and builtins when editing them.
+- For shell scripts and zsh functions in this repo, use lowercase variable names for function-local variables.
+- Use uppercase variable names for global variables, exported environment variables, and readonly global constants.
+
 ### Pywal Integration
 Certain configuration files are pywal templates that receive dynamic colors based on your wallpaper. These templates are stored in `i3/.config/wal/templates/` and are prefixed with `colors-` (e.g., `colors-dunst.conf`, `colors-rofi.conf`, `colors-flameshot.conf`). Use `wal -i <wallpaper>` to set a wallpaper and regenerate color schemes across all components.
 
