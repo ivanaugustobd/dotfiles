@@ -6,7 +6,8 @@ s() {
     t up
   fi
 
-  ssh "$@"
+  # kind such to have kitty hardcoded here, but leaving this for now
+  kitty +kitten ssh "$@"
 
   if ! ps aux | grep '[s]sh ' 1> /dev/null; then
     t down
